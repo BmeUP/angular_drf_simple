@@ -94,11 +94,8 @@ WSGI_APPLICATION = 'cruddj.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cruddrf',
-        'USER': 'bme',
-        'PASSWORD': 'Project1613',
-        'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
 
