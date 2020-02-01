@@ -1,0 +1,14 @@
+<div *ngIf="state">
+    <h2>{{state.title | uppercase}} Details</h2>
+    <div><span>id: </span>{{state.id}}</div>
+    <div>
+      <label>title:
+        <input [(ngModel)]="state.title" placeholder="state.title"/>
+      </label>
+      <label>code:
+        <input [(ngModel)]="state.code" placeholder="state.code"/>
+      </label>
+    </div>
+    
+    <button (click)="update()">save</button>
+  </div>
