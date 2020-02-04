@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework.authentication import BasicAuthentication
 from .models import State
 from .serializers import UserSerializer, StateSerializer
+from .services import AllStates
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -17,31 +18,9 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 
-class StateViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = State.objects.all()
-    serializer_class = StateSerializer
-
-
-@api_view(['GET', 'POST'])
-@permission_classes((permissions.AllowAny,))
-def states_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        states = State.objects.all()
-        serializer = StateSerializer(states, many=True)
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = StateSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+class StateList(AllStates):
+    authentication_classes = []
+    permission_classes = [permissions.AllowAny]
 
 
 @api_view(['GET', 'PUT', 'DELETE'])

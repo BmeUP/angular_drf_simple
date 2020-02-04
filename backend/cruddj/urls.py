@@ -18,14 +18,14 @@ from django.urls import include, path
 from rest_framework import routers
 from cruddrf import views
 
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'states', views.StateViewSet)
+# router = routers.DefaultRouter()
+# router.register(r'users', views.UserViewSet)
+# router.register(r'states', views.StateViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('states/', views.states_list),
+    path('states/', views.StateList.as_view()),
     path('state/<int:pk>/', views.state_detail),
-    path('', include(router.urls)),
+    # path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
